@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CrashItSample</string>
+    <string name="app_name">CatchIt</string>
     <string name="caught_exception_button">Caught</string>
     <string name="uncaught_exception_button">Uncaught</string>
 </resources>
