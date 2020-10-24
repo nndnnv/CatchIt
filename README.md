@@ -1,24 +1,30 @@
 # CatchIt
 
-> CatchIt is a Android Library to monitor exceptions and sync with dedicated node-js server.
+CatchIt is a Android Library to monitor exceptions and sync with dedicated node-js server.
+<br>
+<br>
+
 
   - Supports caught and uncaught exceptions
   - Easy integration
   - Dedicated node-js code to handle exceptions
   - Unit & Instrumented tests
-  <br><br>
+  <br><Br>
 
-### How to use
-If you want use this library, you need to clone this project and import *catchItLib* module into your android studio project.
+
+## How to use
+Clone this repository and import *catchItLib* module into your android studio project by adding following line into your **build.gradle** file:
 <br>
-<br>
+
+
 ```xml
 dependencies {
     implementation project (':catchItLib')
 }
 ```
 <br>
-Then you need to subclass your Application class and start CatchIt <br> <br>
+
+Next, start CatchIt in **Application** class
 
 ```xml
 public class App extends Application {
@@ -30,6 +36,8 @@ public class App extends Application {
     }
 }
 ```
+<br>
+
 You can start CatchIt with custom options (setting server address and changing backend sync interval)
 ```xml
 public class App extends Application {
@@ -45,30 +53,32 @@ public class App extends Application {
 }
 
 ```
+<br>
+
 To log caught exception
 ```xml
 CatchIt.logException(new Exception("hello caught exception"));
 ``` 
 <br>
 
-### Todos (future features)
+## Todos (future features)
   
   - Add CatchIt web dashboard (to view exceptions and generating API tokens)
   - Add Activity lifecycle logs as well so we can track users trail before exceptions was thrown (to understand user footprint)
   - Let developer add custom attributes to users using his app so he can identifies user (by using third_party_id or email address)
-  - Add CatchItOptions.Builder so developers can customize CatchIt behvaiour such as chaging backend URL and sync interval.
-  - Differentiating between caught and uncaught exceptions
-  <br><br>
+
+  <br>
+  
  ### Notes
- - CatchIt uses less 3rd parties libraries more than usual because we want the library to be little as possible
+
  - You'll see Builder pattern for constructing new objects, this pattern let us test objects dependenceis on ease and is well used by Google in Android API
   <br><br>
 ### Future dev improvements
   
-  - Adding "handshake" API call every app launch (or just on first exceptions sync) to send App&Device info as for now the data being sent on every exceptions sync
+  - Adding "handshake" API call every app launch (or just on first exceptions sync)
+  - In this "handshake" we'll send  App&Device info as for now the data being sent on every exceptions sync
   - Create "Interruptable" Executor and Worker (more info on AppExecutors.java)
-  - Protecting internal library classes from container app access (this is a common issue in SDK development) as we don't want any unintended usage of library (we can achieve this by few solutions, making all our classes private and then organizing flat package structure or by using Reflection to use private classes)
-  - Add Repository interface and Implementation
+  - Protecting internal library classes from container app access (this is a common issue in SDK development) as we don't want any unintended usage of library
   - Provide my own custom Executor for Retrofit (Networking) as I want full control on network tasks pooling
   - Adding more tests
   <br><br>
@@ -88,7 +98,7 @@ CatchIt.logException(new Exception("hello caught exception"));
 
 CatchIt server requires [Node.js](https://nodejs.org/) v12.19.0+ to run.
 
-Install the dependencies
+Install dependencies
 
 ```sh
 $ cd catchit-server
@@ -103,7 +113,6 @@ $ node run start
 <br>
 
 ## API Endpoints
-
 
 Exceptions REST API endpoints (require no authentication).
 
