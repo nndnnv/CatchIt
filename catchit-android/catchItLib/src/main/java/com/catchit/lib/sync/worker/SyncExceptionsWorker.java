@@ -4,7 +4,7 @@ import com.catchit.lib.data.ExceptionsRepo;
 import com.catchit.lib.models.AppInfo;
 import com.catchit.lib.models.CatchItException;
 import com.catchit.lib.models.DeviceInfo;
-import com.catchit.lib.network.request.SyncExceptionRequestBody;
+import com.catchit.lib.data.network.request.SyncExceptionRequestBody;
 
 /**
  * Worker Runnable that runs when SyncNotifier notify.
@@ -26,6 +26,9 @@ public class SyncExceptionsWorker implements Runnable {
         mDeviceInfo = deviceInfo;
     }
 
+    /**
+     * Running on {@link com.catchit.lib.utils.AppExecutors)} Disk IO thread pool
+     */
     @Override
     public void run() {
 

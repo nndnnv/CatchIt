@@ -1,7 +1,7 @@
-package com.catchit.lib.network.client;
+package com.catchit.lib.data.network.client;
 
-import com.catchit.lib.network.request.SyncExceptionRequestBody;
-import com.catchit.lib.network.response.ApiResponse;
+import com.catchit.lib.data.network.request.SyncExceptionRequestBody;
+import com.catchit.lib.data.network.response.ApiResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Body;

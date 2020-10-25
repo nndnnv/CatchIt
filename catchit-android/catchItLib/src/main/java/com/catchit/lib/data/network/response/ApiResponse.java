@@ -1,4 +1,4 @@
-package com.catchit.lib.network.response;
+package com.catchit.lib.data.network.response;
 
 
 /**

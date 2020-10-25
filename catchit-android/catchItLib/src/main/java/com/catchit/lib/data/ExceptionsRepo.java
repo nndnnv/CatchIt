@@ -6,10 +6,10 @@ import androidx.annotation.NonNull;
 
 import com.catchit.lib.data.persistence.ExceptionsDatabase;
 import com.catchit.lib.models.CatchItException;
-import com.catchit.lib.network.client.ExceptionsAPI;
-import com.catchit.lib.network.provider.NetworkProvider;
-import com.catchit.lib.network.request.SyncExceptionRequestBody;
-import com.catchit.lib.network.response.ApiResponse;
+import com.catchit.lib.data.network.client.ExceptionsAPI;
+import com.catchit.lib.data.network.provider.NetworkProvider;
+import com.catchit.lib.data.network.request.SyncExceptionRequestBody;
+import com.catchit.lib.data.network.response.ApiResponse;
 import com.catchit.lib.utils.AppExecutors;
 
 import retrofit2.Call;
@@ -73,7 +73,9 @@ public class ExceptionsRepo {
 
     /**
      * Get all pending exceptions ready for sync with server
-     * Since we're only accessing (@methodName getAllPendingExceptions) from SyncExceptionsWorker (running already in DiskIO Executor) we can access it directly
+     *
+     * Since we're only accessing (getAllPendingExceptions from SyncExceptionsWorker {@link com.catchit.lib.sync.worker.SyncExceptionsWorker)}
+     * (running already in DiskIO Executor) we can access it directly
      * @return list of exceptions
      */
     public CatchItException[] getAllPendingExceptions()
@@ -84,7 +86,9 @@ public class ExceptionsRepo {
 
     /**
      * Mark exceptions as in transit prior sending to server
-     * Since we're only accessing (@methodName markExceptionsTransit) from SyncExceptionsWorker (running already in DiskIO Executor) we can access it directly
+     *
+     * Since we're only accessing (markExceptionsTransit from SyncExceptionsWorker {@link com.catchit.lib.sync.worker.SyncExceptionsWorker)}
+     * (running already in DiskIO Executor) we can access it directly
      */
     public void markExceptionsTransit(CatchItException[] exceptions) {
         mDatabase.exceptionsDao().updateExceptionsTransitStatus(exceptions, true);

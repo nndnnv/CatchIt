@@ -27,7 +27,7 @@ dependencies {
     implementation project (':catchItLib')
 }
 ```
-<br><br>
+<br>
 
 ## Initializing CatchIt
 
@@ -125,7 +125,7 @@ CatchIt server responsible for receiving exceptions and saving them into SQLite 
 ## Installation
 
 CatchIt server requires [Node.js](https://nodejs.org/) v12.19.0+ to run.
-<br>
+
 ### Install dependencies
 
 ```sh
@@ -133,7 +133,7 @@ $ cd catchit-server
 $ npm install express
 $ npm install sqlite3
 ```
-<br>
+
 
 
 ## Initializing CatchIt Server
@@ -142,7 +142,6 @@ $ npm install sqlite3
 ```sh
 $ node run start
 ```
-<br>
 
 ## API Endpoints
 
@@ -151,7 +150,6 @@ Exceptions REST API endpoints (require no authentication).
 * **Syncing Exceptions** `POST /api/exceptions/`
 * **Viewing Exceptions** `GET /api/exceptions/`
 
-<br>
 
 ## Exceptions scheme (JSON style)
 
@@ -185,6 +183,7 @@ Exceptions REST API endpoints (require no authentication).
 * [Sqlite3] - SQLite3 persistence library (v5.0.0).
 
 <br>
+
 License
 ----
 MIT

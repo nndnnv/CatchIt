@@ -8,7 +8,6 @@ import java.util.concurrent.Executors;
  * Network operations run in Retrofit custom Dispatcher (based on Executors)
  * Grouping tasks like this avoids the effects of task starvation (e.g. disk reads don't wait behind http requests and vice versa).
  *
- *
  */
 public class AppExecutors {
 

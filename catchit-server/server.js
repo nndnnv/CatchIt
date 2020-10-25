@@ -87,7 +87,7 @@ function insertException(exception, app_info, device_info) {
         timestamp: exception.timestamp,
     }
 
-    var sql ='INSERT INTO exceptions (id, message, stackTrace, class, method, line, timestamp, app_info, device_info) VALUES (?,?,?,?,?,?,?,?,?)'
+    var sql ='insert into exceptions (id, message, stackTrace, class, method, line, timestamp, app_info, device_info) values (?,?,?,?,?,?,?,?,?)'
     
     var params =
     [

@@ -56,11 +56,11 @@ public class CatchIt {
         start(context, null);
     }
 
-    public static void logException(Exception exception) {
+    public static void logException(Throwable t) {
         if(sInstance == null) {
             throw new IllegalArgumentException("CatchIt must be initialised before catching exceptions");
         }
-        sInstance.saveCaughtException(exception);
+        sInstance.saveCaughtException(t);
     }
 
     private final UncaughtExceptionHandlerClient mUncaughtExceptionHandlerClient;
@@ -128,7 +128,6 @@ public class CatchIt {
     }
 
     /**
-     *
      * Saving uncaught exception and exiting process on completion
      */
     private void saveUncaughtException(Throwable e) {

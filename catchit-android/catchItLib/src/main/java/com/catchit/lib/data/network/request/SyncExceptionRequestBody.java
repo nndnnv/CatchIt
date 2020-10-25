@@ -1,4 +1,4 @@
-package com.catchit.lib.network.request;
+package com.catchit.lib.data.network.request;
 
 import com.catchit.lib.models.AppInfo;
 import com.catchit.lib.models.CatchItException;

@@ -6,15 +6,15 @@ import android.os.HandlerThread;
 import java.util.concurrent.TimeUnit;
 
 /**
- * SyncNotifier is providing Event when to sync with backend, see SyncNotifier.Builder to change interval settings
- *
+ * SyncNotifier notifies {@link com.catchit.lib.sync.notifier.SyncNotifierListener} when to sync with backend
+ * see {@link com.catchit.lib.sync.notifier.SyncNotifier.Builder} to change interval settings
  *
  * There are many options to run periodic tasks in Android, for this scenario I chose to use the 'old' but good Handler and ThreadHandler mechanism with the help of postDelayed method.
  * As it allows me to run in a genuine serial manner (limit IO collisions) with a few lines and simplicity
  *
  *
- * Other alternatives to this solution:
- * WorkManager - has a minimum interval of 15 minutes
+ * Other alternatives:
+ * WorkManager - has a minimum interval of 15 minutes and not 100% guarantee
  * ScheduledThreadPoolExecutor - good solution but the first task will have to wait 1 minutes before it starts, so I need to subclass and adds complexity
  * AlarmManager - overkill and will produce boilerplate code
  */

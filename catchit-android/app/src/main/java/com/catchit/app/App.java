@@ -13,7 +13,7 @@ public class App extends Application {
         super.onCreate();
         CatchIt.start(this,
                 new CatchItOptions.Builder()
-                    .setServerAddress("http://192.168.1.100")
+                    .setServerAddress("http://localhost")
                     .setSyncInterval(5, TimeUnit.SECONDS).build());
     }
 }
