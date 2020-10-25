@@ -3,8 +3,7 @@
 ![GitHub license](https://img.shields.io/badge/license-MIT-lightgrey.svg)
 
 CatchIt is an Android Library to monitor exceptions and sync with dedicated node-js server.
-<br>
-<br>
+<br><br>
 
 
   - Supports caught and uncaught exceptions
@@ -19,7 +18,7 @@ CatchIt is an Android Library to monitor exceptions and sync with dedicated node
 
 ## Installation
 
-CatchIt library is distributed as Android library project so it can be included by referencing it as a new module.
+CatchIt library is distributed as Android library so first clone repository to your local machine, then add **catchItLib** module into your Android Studio project, lastly:
 <br>
 ### Using Gradle
 
@@ -28,11 +27,11 @@ dependencies {
     implementation project (':catchItLib')
 }
 ```
-<br>
+<br><br>
 
 ## Initializing CatchIt
 
-1. Add the internet permissions to the AndroidManifest.xml file:
+1. Add the internet permission to the AndroidManifest.xml file:
 
     ```xml
     <uses-permission android:name="android.permission.INTERNET" />
@@ -91,24 +90,13 @@ dependencies {
 And that's it! You're good to go and start monitor caught and uncaught exceptions!
 
 *For a working implementation of CatchIt project see the `app/` folder.*
-
-
-<br>
+<br><br>
 
 ## Todos (future features)
   
   - Add CatchIt web dashboard (to view exceptions and generating API tokens)
-  - Add Activity lifecycle logs as well so we can track users trail before exceptions was thrown (to understand user footprint)
-  - Let developer add custom attributes to users using his app so he can identifies user (by using third_party_id or email address)
-
-  <br>
-  
- ### Notes
-
- - You'll see Builder pattern for constructing new objects, this pattern let us test objects dependenceis on ease and is well used by Google in Android API
-  <br><br>
-### Future dev improvements
-  
+  - Add Activity lifecycle logs as well so we can track users UI trail before exception was thrown
+  - Let developer add custom attributes on runtime to identify end-user (by using third_party_id or email address)
   - Adding "handshake" API call every app launch (or just on first exceptions sync)
   - In this "handshake" we'll send  App&Device info as for now the data being sent on every exceptions sync
   - Create "Interruptible" Executor and "Worker" so I can shut down it safely on uncaught exception scenario
@@ -117,7 +105,12 @@ And that's it! You're good to go and start monitor caught and uncaught exception
   - Adding Proguard/R8 support
   - Adding more tests
   <br><br>
+  
+ ### Notes
 
+ - You'll see Builder pattern for constructing new objects, this pattern let us test objects dependenceis on ease and is well used by Google in Android API
+  <br><br>
+ 
 ### Dependencies
 * [Retrofit] - A type-safe HTTP client for Android and Java.
 * [Room] - Persistence library that provides an abstraction layer over SQLite.
@@ -129,18 +122,22 @@ CatchIt server responsible for receiving exceptions and saving them into SQLite 
 
 <br>
 
-### Installation
+## Installation
 
 CatchIt server requires [Node.js](https://nodejs.org/) v12.19.0+ to run.
-
-Install dependencies
+<br>
+### Install dependencies
 
 ```sh
 $ cd catchit-server
 $ npm install express
 $ npm install sqlite3
 ```
-Start the server
+<br>
+
+
+## Initializing CatchIt Server
+### Start Node.js server
 
 ```sh
 $ node run start
@@ -156,7 +153,8 @@ Exceptions REST API endpoints (require no authentication).
 
 <br>
 
-Exceptions being saved on JSON format
+## Exceptions scheme (JSON style)
+
 ```json
       "id": 6,
       "message": "Attempt to invoke virtual method 'java.lang.String java.lang.String.toString()' on a null object reference",
@@ -180,16 +178,16 @@ Exceptions being saved on JSON format
                     }
 ```
 
+<br>
 
 ### Dependencies
 * [ExpressJS] - Node.js web  framework to create REST style web app in ease (v4.17.1).
 * [Sqlite3] - SQLite3 persistence library (v5.0.0).
 
-
+<br>
 License
 ----
 MIT
-
 
 **Free Software, Hell Yeah!**
 
