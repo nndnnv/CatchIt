@@ -92,20 +92,7 @@ And that's it! You're good to go and start monitor caught and uncaught exception
 *For a working implementation of CatchIt project see the `app/` folder.*
 <br><br>
 
-## Todos (future features)
-  
-  - Add CatchIt web dashboard (to view exceptions and generating API tokens)
-  - Add Activity lifecycle logs as well so we can track users UI trail before exception was thrown
-  - Let developer add custom attributes on runtime to identify end-user (by using third_party_id or email address)
-  - Adding "handshake" API call every app launch (or just on first exceptions sync)
-  - In this "handshake" we'll send  App&Device info as for now the data being sent on every exceptions sync
-  - Create "Interruptible" Executor and "Worker" so I can shut down it safely on uncaught exception scenario
-  - Protecting internal library classes from container app access (this is a common issue in SDK development) as we don't want any unintended usage of library
-  - Provide my own custom Executor for Retrofit (Networking) as I want full control on network tasks pooling
-  - Adding Proguard/R8 support
-  - Adding more tests
-  <br><br>
-  
+
  ### Notes
 
  - You'll see Builder pattern for constructing new objects, this pattern let us test objects dependenceis on ease and is well used by Google in Android API
@@ -184,6 +171,21 @@ Exceptions REST API endpoints (require no authentication).
 
 <br>
 
+## Todos (future features)
+  
+  - Add CatchIt web dashboard (to view exceptions and generating API tokens)
+  - Add Activity lifecycle logs as well so we can track users UI trail before exception was thrown
+  - Let developer add custom attributes on runtime to identify end-user (by using third_party_id or email address)
+  - Adding "handshake" API call every app launch (or just on first exceptions sync)
+  - In this "handshake" we'll send  App&Device info as for now the data being sent on every exceptions sync
+  - Create "Interruptible" Executor and "Worker" so I can shut down it safely on uncaught exception scenario
+  - Protecting internal library classes from container app access (this is a common issue in SDK development) as we don't want any unintended usage of library
+  - Provide my own custom Executor for Retrofit (Networking) as I want full control on network tasks pooling
+  - Replace **AUTOINCREMENT** in Node.js server as it's not recommended by sqlite
+  - Adding Proguard/R8 support
+  - Adding more tests
+
+  <br>
 License
 ----
 MIT

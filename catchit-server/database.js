@@ -8,8 +8,9 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
       console.error(err.message)
       throw err
     }else{
+        
         db.run(`CREATE TABLE exceptions (
-            id INTEGER PRIMARY KEY ON CONFLICT IGNORE,
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
             message text, 
             stackTrace text, 
             class text, 
@@ -20,8 +21,6 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
             device_info text)`,
         (err) => {
         });  
-
-        // db.run('DELETE FROM exceptions WHERE id > 0')
     }
 });
 

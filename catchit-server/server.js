@@ -78,7 +78,6 @@ app.post("/api/exceptions/", (req, res, next) => {
 function insertException(exception, app_info, device_info) {
 
     var exceptionModel = {
-        id: exception.id,
         message: exception.message,
         stacktrace: exception.stackTrace,
         class: exception.canonicalName,
@@ -87,11 +86,10 @@ function insertException(exception, app_info, device_info) {
         timestamp: exception.timestamp,
     }
 
-    var sql ='insert into exceptions (id, message, stackTrace, class, method, line, timestamp, app_info, device_info) values (?,?,?,?,?,?,?,?,?)'
+    var sql ='insert into exceptions (message, stackTrace, class, method, line, timestamp, app_info, device_info) values (?,?,?,?,?,?,?,?)'
     
     var params =
     [
-        exceptionModel.id, 
         exceptionModel.message,
         exceptionModel.stacktrace,
         exceptionModel.class,
