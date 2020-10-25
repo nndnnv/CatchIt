@@ -10,7 +10,7 @@ public class CatchItExceptionUnitTest {
     private CatchItException.Builder builder;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         builder = new CatchItException.Builder();
     }
 
@@ -20,7 +20,7 @@ public class CatchItExceptionUnitTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void buildIt() throws Exception {
+    public void buildIt() {
         builder.build();
     }
 

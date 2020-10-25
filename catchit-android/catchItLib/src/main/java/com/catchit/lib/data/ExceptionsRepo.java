@@ -2,6 +2,8 @@ package com.catchit.lib.data;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
+
 import com.catchit.lib.data.persistence.ExceptionsDatabase;
 import com.catchit.lib.models.CatchItException;
 import com.catchit.lib.network.client.ExceptionsAPI;
@@ -57,8 +59,8 @@ public class ExceptionsRepo {
      */
     public void saveUncaughtException(CatchItException catchItException, SaveOperationListener listener)
     {
-        mAppExecutors.runOnce(() -> {
-            // get all exception in transit and update them to transit false, so we'll send again
+        mAppExecutors.executeOnDiskIO(() -> {
+            // get all exception in transit and update them to pending state, so we'll send again on next launch
             CatchItException[] inTransitExceptions = mDatabase.exceptionsDao().getAllTransitExceptions();
             // mark them as "pending" state
             mDatabase.exceptionsDao().updateExceptionsTransitStatus(inTransitExceptions, false);
@@ -113,18 +115,18 @@ public class ExceptionsRepo {
     public void syncExceptions(SyncExceptionRequestBody synRequestBody)  {
         mApiClient.sendExceptions(synRequestBody).enqueue(new Callback<ApiResponse>() {
             @Override
-            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+            public void onResponse(@NonNull Call<ApiResponse> call, @NonNull Response<ApiResponse> response) {
                 // on success, delete exception as we don't need them
                 deleteExceptions(synRequestBody.exceptions);
             }
 
             @Override
-            public void onFailure(Call<ApiResponse> call, Throwable t) {
+            public void onFailure(@NonNull Call<ApiResponse> call, @NonNull Throwable t) {
                 // on failure, set the exception as Pending so SyncExceptionsWorker can retry sending on next sync
                 markExceptionsPending(synRequestBody.exceptions);
             }
         });
-    };
+    }
 
     public interface SaveOperationListener{
         void onFinished();

@@ -15,7 +15,7 @@ public class AppInfoUnitTest {
     private AppInfo.Builder builder;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         builder = new AppInfo.Builder();
     }
 
@@ -25,7 +25,7 @@ public class AppInfoUnitTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void buildIt() throws Exception {
+    public void buildIt() {
         builder.build();
     }
 

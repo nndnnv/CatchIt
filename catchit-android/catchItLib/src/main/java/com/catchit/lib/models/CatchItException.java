@@ -57,10 +57,10 @@ public class CatchItException {
     }
 
     public CatchItException(Throwable exception) {
-        canonicalName = exception.getClass().getCanonicalName();
         message = exception.getMessage();
         stackTrace = getStackTrace(exception);
         StackTraceElement lastExceptionElement = exception.getStackTrace()[0];
+        canonicalName = lastExceptionElement.getClassName();
         methodName = lastExceptionElement.getMethodName();
         lineNumber = lastExceptionElement.getLineNumber();
         timestamp = System.currentTimeMillis();

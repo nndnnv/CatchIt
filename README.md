@@ -1,6 +1,8 @@
 # CatchIt
 
-CatchIt is a Android Library to monitor exceptions and sync with dedicated node-js server.
+![GitHub license](https://img.shields.io/badge/license-MIT-lightgrey.svg)
+
+CatchIt is an Android Library to monitor exceptions and sync with dedicated node-js server.
 <br>
 <br>
 
@@ -11,11 +13,15 @@ CatchIt is a Android Library to monitor exceptions and sync with dedicated node-
   - Unit & Instrumented tests
   <br><Br>
 
+## Requirements
+- Android 28+
+<br><br>
 
-## How to use
-Clone this repository and import *catchItLib* module into your android studio project by adding following line into your **build.gradle** file:
+## Installation
+
+CatchIt library is distributed as Android library project so it can be included by referencing it as a new module.
 <br>
-
+### Using Gradle
 
 ```xml
 dependencies {
@@ -24,23 +30,47 @@ dependencies {
 ```
 <br>
 
-Next, start CatchIt in **Application** class
+## Initializing CatchIt
 
-```xml
-public class App extends Application {
+1. Add the internet permissions to the AndroidManifest.xml file:
+
+    ```xml
+    <uses-permission android:name="android.permission.INTERNET" />
+    ```
+
+3. Import the CatchIt into your **Application** class:
+
+    
+    ```java
+    import com.catchit.lib.CatchIt;
+    import com.catchit.lib.CatchItOptions; // optional
+    ```
+
+4. Start CatchIt with your **Application** context by adding this to your `Application.onCreate` method:
+
+    
+    
+    ```java
+    import com.catchit.lib.CatchIt;
+
+    public class App extends Application {
+
     @Override
     public void onCreate() {
         super.onCreate();
 
         CatchIt.start(this);
     }
-}
-```
-<br>
+    ```
+    
+    You can start CatchIt with custom options (setting server address and changing backend sync interval):
 
-You can start CatchIt with custom options (setting server address and changing backend sync interval)
-```xml
-public class App extends Application {
+    ```java
+    import com.catchit.lib.CatchIt;
+    import com.catchit.lib.CatchItOptions;
+
+    public class App extends Application {
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -50,15 +80,19 @@ public class App extends Application {
                 .setServerAddress("SERVER_ADDRESS")
                 .setSyncInterval(15, TimeUnit.SECONDS).build());
     }
-}
+    ```
 
-```
-<br>
 
-To log caught exception
-```xml
-CatchIt.logException(new Exception("hello caught exception"));
-``` 
+5. To log caught exception from anywhere in your app use:
+    ```java
+    CatchIt.logException(new Exception("hello caught exception"));
+    ```
+
+And that's it! You're good to go and start monitor caught and uncaught exceptions!
+
+*For a working implementation of CatchIt project see the `app/` folder.*
+
+
 <br>
 
 ## Todos (future features)
@@ -77,9 +111,10 @@ CatchIt.logException(new Exception("hello caught exception"));
   
   - Adding "handshake" API call every app launch (or just on first exceptions sync)
   - In this "handshake" we'll send  App&Device info as for now the data being sent on every exceptions sync
-  - Create "Interruptable" Executor and Worker (more info on AppExecutors.java)
+  - Create "Interruptible" Executor and "Worker" so I can shut down it safely on uncaught exception scenario
   - Protecting internal library classes from container app access (this is a common issue in SDK development) as we don't want any unintended usage of library
   - Provide my own custom Executor for Retrofit (Networking) as I want full control on network tasks pooling
+  - Adding Proguard/R8 support
   - Adding more tests
   <br><br>
 
@@ -90,7 +125,7 @@ CatchIt.logException(new Exception("hello caught exception"));
 * [Espresso] - UI testing framework for Android powered devices.
   <br><br><br>
 # NodeJS server
-> CatchIt server responsible for receiving exceptions and saving them into SQLite database
+CatchIt server responsible for receiving exceptions and saving them into SQLite database
 
 <br>
 
@@ -120,6 +155,31 @@ Exceptions REST API endpoints (require no authentication).
 * **Viewing Exceptions** `GET /api/exceptions/`
 
 <br>
+
+Exceptions being saved on JSON format
+```json
+      "id": 6,
+      "message": "Attempt to invoke virtual method 'java.lang.String java.lang.String.toString()' on a null object reference",
+      "class": "com.catchit.app.MainActivity",
+      "method": "lambda$onCreate$1",
+      "line": 20,
+      "timestamp": "1603570643720",
+      "stackTrace": "long stack trace goes here...",
+      "app_info": {
+                    "version":1.0,
+                    "versionCode":1
+                  },
+      "device_info": {
+                    "brand":"OnePlus",
+                    "densityDpi":420,
+                    "manufacturer":"OnePlus",
+                    "model":"ONEPLUS A6013",
+                    "screenHeight":2261,
+                    "screenWidth":1080,
+                    "sdkVersion":28
+                    }
+```
+
 
 ### Dependencies
 * [ExpressJS] - Node.js web  framework to create REST style web app in ease (v4.17.1).

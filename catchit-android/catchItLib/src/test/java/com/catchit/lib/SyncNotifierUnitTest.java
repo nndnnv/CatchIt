@@ -12,7 +12,7 @@ public class SyncNotifierUnitTest {
     private SyncNotifier.Builder builder;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         builder = new SyncNotifier.Builder();
     }
 
@@ -32,7 +32,7 @@ public class SyncNotifierUnitTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void buildIt() throws Exception {
+    public void buildIt() {
         builder.build();
     }
 }

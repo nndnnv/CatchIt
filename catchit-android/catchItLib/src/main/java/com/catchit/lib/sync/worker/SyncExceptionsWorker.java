@@ -1,6 +1,5 @@
 package com.catchit.lib.sync.worker;
 
-import com.catchit.lib.CatchIt;
 import com.catchit.lib.data.ExceptionsRepo;
 import com.catchit.lib.models.AppInfo;
 import com.catchit.lib.models.CatchItException;

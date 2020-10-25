@@ -3,8 +3,6 @@ package com.catchit.lib.sync.notifier;
 import android.os.Handler;
 import android.os.HandlerThread;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -25,8 +23,8 @@ public class SyncNotifier {
     private final static String HANDLER_THREAD_NAME = "SyncNotifierThread";
 
     private final SyncNotifierListener mListener;
-    private int mSyncInterval = 1;
-    private TimeUnit mSyncIntervalTimeUnit = TimeUnit.MINUTES;
+    private final int mSyncInterval;
+    private final TimeUnit mSyncIntervalTimeUnit;
 
     HandlerThread mHandlerThread;
     Handler mHandler;

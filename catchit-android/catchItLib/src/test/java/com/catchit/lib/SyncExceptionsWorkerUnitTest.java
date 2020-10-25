@@ -10,7 +10,7 @@ public class SyncExceptionsWorkerUnitTest {
     private SyncExceptionsWorker.Builder builder;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         builder = new SyncExceptionsWorker.Builder();
     }
 
@@ -30,7 +30,7 @@ public class SyncExceptionsWorkerUnitTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void buildIt() throws Exception {
+    public void buildIt() {
         builder.build();
     }
 

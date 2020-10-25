@@ -15,7 +15,7 @@ public class AppInfo {
 
     private AppInfo(Context context) {
 
-        PackageInfo pInfo = null;
+        PackageInfo pInfo;
         try {
             pInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
             version = pInfo.versionName;

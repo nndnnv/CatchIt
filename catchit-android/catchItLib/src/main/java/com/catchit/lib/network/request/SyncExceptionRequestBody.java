@@ -9,11 +9,11 @@ import com.catchit.lib.models.DeviceInfo;
  */
 public class SyncExceptionRequestBody {
 
-    public AppInfo appInfo;
+    public final AppInfo appInfo;
 
-    public DeviceInfo deviceInfo;
+    public final DeviceInfo deviceInfo;
 
-    public CatchItException[] exceptions;
+    public final CatchItException[] exceptions;
 
     public SyncExceptionRequestBody(AppInfo appInfo, DeviceInfo deviceInfo, CatchItException[] exceptions) {
         this.appInfo = appInfo;

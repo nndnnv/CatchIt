@@ -1,17 +1,13 @@
 package com.catchit.lib.uncaught;
 
-import android.util.Log;
-
 import androidx.annotation.NonNull;
-
-import com.catchit.lib.CatchIt;
 
 /**
  * UncaughtExceptionHandler to implement Thread.UncaughtExceptionHandler on the JVM
  */
 public class UncaughtExceptionHandlerClient implements Thread.UncaughtExceptionHandler {
 
-    private UncaughtExceptionListener mExceptionHandler = null;
+    private final UncaughtExceptionListener mExceptionHandler;
 
     private UncaughtExceptionHandlerClient(UncaughtExceptionListener handler) {
         mExceptionHandler = handler;

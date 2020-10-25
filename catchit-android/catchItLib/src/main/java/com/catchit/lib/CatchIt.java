@@ -18,7 +18,7 @@ import com.catchit.lib.uncaught.UncaughtExceptionHandlerClient;
 import com.catchit.lib.utils.AppExecutors;
 
 /**
- * CatchIt is a Android Library to monitor exceptions and sync with dedicated node-js server.
+ * CatchIt is an Android Library to monitor exceptions and sync with dedicated node-js server.
  *
  * Support caught and uncaught exceptions
  * Unit & Instrumented tests
@@ -57,6 +57,9 @@ public class CatchIt {
     }
 
     public static void logException(Exception exception) {
+        if(sInstance == null) {
+            throw new IllegalArgumentException("CatchIt must be initialised before catching exceptions");
+        }
         sInstance.saveCaughtException(exception);
     }
 
@@ -125,16 +128,10 @@ public class CatchIt {
     }
 
     /**
-     * We're shutting down DiskIO Executor in order to prevent any new read/write operations
-     *
-     * I'm aware this is not 100% solution, more info in see AppExecutors
      *
      * Saving uncaught exception and exiting process on completion
      */
-
     private void saveUncaughtException(Throwable e) {
-        mAppExecutors.shutdownDiskIO();
-
         mExceptionsRepo.saveUncaughtException(
                 new CatchItException.Builder()
                         .setThrowable(e).build(), () -> {

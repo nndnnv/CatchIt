@@ -15,9 +15,9 @@ public class CatchItOptions {
         this.syncIntervalTimeUnit = timeUnitInterval;
     }
 
-    protected int syncInterval;
-    protected TimeUnit syncIntervalTimeUnit;
-    protected String serverAddress;
+    protected final int syncInterval;
+    protected final TimeUnit syncIntervalTimeUnit;
+    protected final String serverAddress;
 
     public static class Builder {
 

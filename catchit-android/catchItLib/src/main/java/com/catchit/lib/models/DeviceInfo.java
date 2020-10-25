@@ -8,13 +8,13 @@ import android.os.Build;
  */
 public class DeviceInfo {
 
-    public String manufacturer;
-    public String model;
-    public String brand;
-    public int sdkVersion;
-    public int screenWidth;
-    public int screenHeight;
-    public int densityDpi;
+    public final String manufacturer;
+    public final String model;
+    public final String brand;
+    public final int sdkVersion;
+    public final int screenWidth;
+    public final int screenHeight;
+    public final int densityDpi;
 
     private DeviceInfo() {
         manufacturer = Build.MANUFACTURER;
